@@ -1,7 +1,7 @@
 FROM library/ubuntu:14.04
 MAINTAINER "linyows" <linyows@gmail.com>
 
-ENV PHPBREW_PHP 5.6.21
+ENV PHPBREW_PHP 7.0.9
 
 RUN apt-get -y update && \
     apt-get -y install curl git php5-cli php5-intl php-pear libmcrypt-dev libicu-dev libxml2-dev \
