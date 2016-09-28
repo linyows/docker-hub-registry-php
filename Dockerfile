@@ -13,3 +13,11 @@ RUN chmod +x /usr/local/bin/phpbrew
 RUN echo "source ~/.phpbrew/bashrc\nphpbrew use ${PHPBREW_PHP}" >> ~/.bashrc
 RUN phpbrew init && phpbrew install ${PHPBREW_PHP} +default +mysql +mb +iconv +opcache +sqlite +intl
 RUN /bin/bash -c "source ~/.phpbrew/bashrc; phpbrew switch ${PHPBREW_PHP}; phpbrew ext install xdebug; phpbrew app get composer"
+
+RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+RUN curl -L get.rvm.io | bash -s stable
+
+RUN /bin/bash -l -c "rvm requirements"
+RUN /bin/bash -l -c "rvm install 2.3 && rvm use 2.3"
+RUN /bin/bash -l -c "gem install bundler --no-ri --no-rdoc"
+RUN echo "source /etc/profile.d/rvm.sh" >> ~/.bashrc
